@@ -61,13 +61,12 @@ public class Person implements Runnable {
                         ownedValuables.add(valuable);
                         // add euphoric response
                         if (valuable.getMaterial().ordinal() >= socialStatus.ordinal()) {
-                            System.out.println(socialStatus + " is euphoric about the new acquired " + valuable.getName() +
-                                    " for the total value of " + valuable.getValue() +
+                            System.out.println(socialStatus + " is euphoric about the new acquired " + valuable.getType() +
                                     " he now has a total of " + getValuableTotalSum() + " worth of valuables.");
                         }
                         // unhappy response
                         if (valuable.getMaterial().ordinal() <= socialStatus.ordinal() - 2) {
-                            System.out.println(socialStatus + " is NOT HAPPY about the new acquired " + valuable.getName() +
+                            System.out.println(socialStatus + " is NOT HAPPY about the new acquired " + valuable.getType() +
                                     ". It's way beneath a " + socialStatus + "!!!");
                         }
                     }

@@ -55,10 +55,10 @@ public class TreasureRoom  implements AccessRight{
     @Override
     public synchronized void acquireWrite(String name) {
         queue.add(writer);
-        System.out.println(name + " wants change the contents af the treasure room!");
+        System.out.println("The " + name + " wants change the contents af the treasure room!");
         if (activeReaders > 0 || queue.element().equals(reader) || isWriting){
             try {
-                System.out.println(name + " is waiting for the doors to be opened");
+                System.out.println(name + " is waiting for the doors to be opened to the treasure room");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -66,22 +66,20 @@ public class TreasureRoom  implements AccessRight{
         }
         isWriting = true;
         queue.poll();
-        System.out.println(name + " is handling his business!!");
+        System.out.println(name + " is handling his business in the treasure room");
     }
 
     @Override
     public synchronized void releaseWrite(String name) {
-        System.out.println(name + " has updated the inventory");
+        System.out.println(name + " has updated the inventory of the treasure room");
         isWriting = false;
         notifyAll();
     }
 
     public void addValuable(String name, Valuable valuable){
-        System.out.println(name + " added " + valuable.getType());
         roomValue += valuable.getValue();
         valuables.add(valuable);
-
-        System.out.println("New total value of the treasure: " + roomValue);
+        System.out.println(name + " added " + valuable.getType() + " to the treasure room. Total is now: " + roomValue);
     }
 
     public Valuable getValuable(String name, Valuable valuable){
@@ -100,9 +98,7 @@ public class TreasureRoom  implements AccessRight{
 
     public Valuable getRandomValueable(String name) {
         if (valuables.size() > 0) {
-            Valuable valuable = valuables.remove(new Random().nextInt(valuables.size()));
-            System.out.println(name + " took a " + valuable.getType() + " from the treasure room");
-            return valuable;
+            return removeValuable(name, valuables.get(new Random().nextInt(valuables.size())));
         }
         return null;
     }
@@ -117,7 +113,7 @@ public class TreasureRoom  implements AccessRight{
             for (Valuable valuableInList : valuables){
                 if (valuableInList.equals(valuable)){
                     valuableToReturn = valuableInList;
-                    System.out.println(name + " removed " + valuable.getType());
+                    System.out.println(name + " removed " + valuable.getType() + " from the treasure room");
                     break;
                 }
             }
