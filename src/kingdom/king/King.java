@@ -75,7 +75,7 @@ public class King implements Runnable {
         System.out.println("------------------ THE KING PARTY HARD ------------------");
         System.out.println("---------------------------------------------------------");
         String msg = "" +
-                "                                               (\"\\\n" +
+                "                                                   (\"\\\n" +
                 "           /)                                       ) \\\n" +
                 "          (^)                                      /   \\\n" +
                 "          ,i.                                     (  ^  )\n" +
