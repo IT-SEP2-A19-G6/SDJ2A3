@@ -36,26 +36,30 @@ public class King implements Runnable {
 
                 for (int i = 0; i < treasureRoom.getValuableCount(); i++) {
                     Valuable valuable = treasureRoom.getRandomValueable(getClass().getSimpleName());
-                    Thread.sleep(300);
+                    Thread.sleep(500);
                     valuables.add(valuable);
                     valuableSum += valuable.getValue();
                     if (valuableSum >= partyBudget) {
-                        System.out.println("The king collected enough valuables to hold a party.");
-                        System.out.println("---------------------------------------------------------");
-                        System.out.println("------------------ THE KING PARTY HARD ------------------");
-                        System.out.println("---------------------------------------------------------");
-                        System.out.println("The king has the best party in the entire kingdom!!!!!!");
+                        break;
                     }
                 }
 
-                if (treasureRoom.getValuableCount() == 0 && valuableSum < partyBudget) {
+                if (valuableSum >= partyBudget) {
+                    System.out.println("The king collected enough valuables to hold a party.");
+                    System.out.println("---------------------------------------------------------");
+                    System.out.println("------------------ THE KING PARTY HARD ------------------");
+                    System.out.println("---------------------------------------------------------");
+                    System.out.println("The king has the best party in the entire kingdom!!!!!!");
+                } else  {
                     // party canceled
-                    System.out.println("The king did NOT have enough valuables to hold the party. The king is sad.");
-                    // putting the stuff back.
-                    System.out.println("The king is putting all the items back in the treasure room because its not party time anyway.");
-                    for (Valuable v : valuables) {
-                        treasureRoom.addValuable(getClass().getSimpleName(), v);
-                        Thread.sleep(100);
+                    System.out.println("The king did NOT have enough valuables(" + treasureRoom.getValuableCount() + " items with the total worth of " + valuableSum + ") in the treasure room to hold the party worth " + partyBudget + ". The king is sad.");
+                    if (valuables.size() > 0) {
+                        // putting the stuff back.
+                        System.out.println("The king is putting all the items back in the treasure room because its not party time anyway.");
+                        for (Valuable v : valuables) {
+                            treasureRoom.addValuable(getClass().getSimpleName(), v);
+                            Thread.sleep(100);
+                        }
                     }
                 }
 
