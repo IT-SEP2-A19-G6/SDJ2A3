@@ -99,9 +99,10 @@ public class TreasureRoom  implements AccessRight{
     }
 
     public Valuable getRandomValueable(String name) {
-        System.out.println(name + " took a random item from the treasure room" );
         if (valuables.size() > 0) {
-            return valuables.remove(new Random().nextInt(valuables.size()));
+            Valuable valuable = valuables.remove(new Random().nextInt(valuables.size()));
+            System.out.println(name + " took a " + valuable.getType() + " from the treasure room");
+            return valuable;
         }
         return null;
     }
