@@ -59,13 +59,13 @@ public class Property {
     public String getSize() {
         String sizeName;
         if (size <= 3){
-            sizeName = "Small";
+            sizeName = "small";
         } else if (size <= 6){
-            sizeName = "Medium";
+            sizeName = "medium";
         } else if (size <= 8){
-            sizeName = "Large";
+            sizeName = "large";
         } else {
-            sizeName = "Huge";
+            sizeName = "huge";
         }
         return sizeName;
     }
