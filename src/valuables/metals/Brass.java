@@ -1,5 +1,6 @@
 package valuables.metals;
 
+import valuables.Materials;
 import valuables.Property;
 import valuables.Valuable;
 import valuables.ValuableMaterials;
@@ -7,13 +8,13 @@ import valuables.ValuableMaterials;
 import java.util.Random;
 
 public class Brass implements Valuable {
-    private ValuableMaterials.Materials name;
+    private Materials name;
     private int value;
     private Property property;
 
 
     public Brass(){
-        this.name = ValuableMaterials.Materials.BRASS;
+        this.name = Materials.BRASS;
         this.value = 1;
         Random r = new Random();
         this.property = new Property();
@@ -41,6 +42,11 @@ public class Brass implements Valuable {
     @Override
     public String getType() {
         return property.getSize() + " " + property.getSurface() + " " + getName() + " " + property.getShape() + " with a value of " + value;
+    }
+
+    @Override
+    public Materials getMaterial() {
+        return name;
     }
 
 }

@@ -8,9 +8,9 @@ import valuables.stones.Ruby;
 import java.util.HashMap;
 
 public class ValuableFactory {
-    public static HashMap<ValuableMaterials.Materials, Valuable> valuables = new java.util.HashMap<>();
+    public static HashMap<Materials, Valuable> valuables = new java.util.HashMap<>();
 
-    public static Valuable getValuable(ValuableMaterials.Materials valuableType){
+    public static Valuable getValuable(Materials valuableType){
         Valuable valuable = valuables.get(valuableType);
         if (valuable == null) {
             switch (valuableType) {

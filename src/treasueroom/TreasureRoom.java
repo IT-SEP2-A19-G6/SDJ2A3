@@ -4,6 +4,7 @@ import valuables.Valuable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 
 
 public class TreasureRoom  implements AccessRight{
@@ -50,6 +51,7 @@ public class TreasureRoom  implements AccessRight{
         }
     }
 
+    // TODO: JH - replace String name with: Class c, and use c.getName() method to get the name instead of writing each.
     @Override
     public synchronized void acquireWrite(String name) {
         queue.add(writer);
@@ -78,6 +80,8 @@ public class TreasureRoom  implements AccessRight{
         System.out.println(name + " added " + valuable.getType());
         roomValue += valuable.getValue();
         valuables.add(valuable);
+
+        System.out.println("New total value of the treasure: " + roomValue);
     }
 
     public Valuable getValuable(String name, Valuable valuable){
@@ -92,6 +96,18 @@ public class TreasureRoom  implements AccessRight{
             }
         }
         return valuableToReturn;
+    }
+
+    public Valuable getRandomValueable(String name) {
+        System.out.println(name + " took a random item from the treasure room" );
+        if (valuables.size() > 0) {
+            return valuables.remove(new Random().nextInt(valuables.size()));
+        }
+        return null;
+    }
+
+    public int getValuableCount() {
+        return valuables.size();
     }
 
     public Valuable removeValuable(String name, Valuable valuable){

@@ -1,5 +1,6 @@
 package valuables.metals;
 
+import valuables.Materials;
 import valuables.Property;
 import valuables.Valuable;
 import valuables.ValuableMaterials;
@@ -7,14 +8,14 @@ import valuables.ValuableMaterials;
 import java.util.Random;
 
 public class Gold implements Valuable {
-    private ValuableMaterials.Materials name;
+    private Materials name;
     private double carat;
     private int value;
     private Property property;
 
 
     public Gold(){
-        this.name = ValuableMaterials.Materials.GOLD;
+        this.name = Materials.GOLD;
         this.value = 6;
         int[] carats = {8, 14, 18, 24};
         Random r = new Random();
@@ -45,6 +46,11 @@ public class Gold implements Valuable {
     @Override
     public String getType() {
         return property.getSize() + " " + property.getSurface() + " " + carat + " carat " + getName() + " " + property.getShape() + " with a value of " + value;
+    }
+
+    @Override
+    public Materials getMaterial() {
+        return name;
     }
 
 }
