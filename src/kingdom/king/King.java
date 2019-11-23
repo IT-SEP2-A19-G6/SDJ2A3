@@ -1,8 +1,8 @@
 package kingdom.king;
 
 import kingdom.taxcollector.TaxCollector;
-import treasueroom.TreasureRoom;
-import valuables.Valuable;
+import kingdom.treasueroom.TreasureRoom;
+import kingdom.valuables.Valuable;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -45,12 +45,12 @@ public class King implements Runnable {
                 }
 
                 if (valuableSum >= partyBudget) {
-                    System.out.println("The king collected enough valuables to hold a party.");
+                    System.out.println("The king collected enough kingdom.valuables to hold a party.");
                     displayParty();
                     System.out.println("The king has the best party in the entire kingdom!!!!!!");
                 } else  {
                     // party canceled
-                    System.out.println("The king did NOT have enough valuables(" + treasureRoom.getValuableCount() + " items with the total worth of " + valuableSum + ") in the treasure room to hold the party worth " + partyBudget + ". The king is sad.");
+                    System.out.println("The king did NOT have enough kingdom.valuables(" + treasureRoom.getValuableCount() + " items with the total worth of " + valuableSum + ") in the treasure room to hold the party worth " + partyBudget + ". The king is sad.");
                     if (valuables.size() > 0) {
                         // putting the stuff back.
                         System.out.println("The king is putting all the items back in the treasure room because its not party time anyway.");
@@ -75,7 +75,7 @@ public class King implements Runnable {
         System.out.println("------------------ THE KING PARTY HARD ------------------");
         System.out.println("---------------------------------------------------------");
         String msg = "" +
-                "                                               (\"\\\n" +
+                "                                                   (\"\\\n" +
                 "           /)                                       ) \\\n" +
                 "          (^)                                      /   \\\n" +
                 "          ,i.                                     (  ^  )\n" +
@@ -96,7 +96,7 @@ public class King implements Runnable {
                 "        \\|/|  /           /\\---/\\             \\  \"./  ,\"  /\n" +
                 "         /-^-/           /  )-(  \\             `--/  /\\--\"\n" +
                 "        (   X           /  /   \\  \\              /  _) \\\n" +
-                "         \\  \\          / ,\"     \". \\            mm/  (_ \\   bbw\n" +
+                "         \\  \\          / ,\"     \". \\            mm/  (_ \\ we want a\n" +
                 "          \\  y-._     / /         \\ \\                  \\_b  `69\n" +
                 "          |\\,' X-'   /-)           (-\\\n" +
                 "        _,T-)  /    / ^!           !^ \\\n" +

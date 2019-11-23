@@ -1,21 +1,20 @@
-package valuables.metals;
+package kingdom.valuables.metals;
 
-import valuables.Materials;
-import valuables.Property;
-import valuables.Valuable;
-import valuables.ValuableMaterials;
+import kingdom.valuables.Materials;
+import kingdom.valuables.Property;
+import kingdom.valuables.Valuable;
 
 import java.util.Random;
 
-public class Silver implements Valuable {
+public class Copper implements Valuable {
     private Materials name;
     private int value;
     private Property property;
 
 
-    public Silver(){
-        this.name = Materials.SILVER;
-        this.value = 4;
+    public Copper(){
+        this.name = Materials.COPPER;
+        this.value = 2;
         Random r = new Random();
         this.property = new Property();
         calculateValue();

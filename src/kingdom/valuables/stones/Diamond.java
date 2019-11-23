@@ -1,9 +1,8 @@
-package valuables.stones;
+package kingdom.valuables.stones;
 
-import valuables.Materials;
-import valuables.Property;
-import valuables.Valuable;
-import valuables.ValuableMaterials;
+import kingdom.valuables.Materials;
+import kingdom.valuables.Property;
+import kingdom.valuables.Valuable;
 
 import java.util.Random;
 

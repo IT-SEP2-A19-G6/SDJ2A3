@@ -1,4 +1,4 @@
-package valuables;
+package kingdom.valuables;
 
 public enum Materials {
     BRASS,

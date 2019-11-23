@@ -1,9 +1,9 @@
-package valuables;
+package kingdom.valuables;
 
-import valuables.metals.*;
-import valuables.stones.Diamond;
-import valuables.stones.Emerald;
-import valuables.stones.Ruby;
+import kingdom.valuables.metals.*;
+import kingdom.valuables.stones.Diamond;
+import kingdom.valuables.stones.Emerald;
+import kingdom.valuables.stones.Ruby;
 
 import java.util.HashMap;
 

@@ -1,6 +1,6 @@
-package treasueroom;
+package kingdom.treasueroom;
 
-import valuables.Valuable;
+import kingdom.valuables.Valuable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;

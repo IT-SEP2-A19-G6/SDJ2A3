@@ -2,10 +2,7 @@ import kingdom.commoners.CommonerType;
 import kingdom.commoners.Person;
 import kingdom.king.King;
 import kingdom.taxcollector.TaxCollector;
-import treasueroom.TreasureRoom;
-import valuables.Valuable;
-import valuables.ValuableFactory;
-import valuables.ValuableMaterials;
+import kingdom.treasueroom.TreasureRoom;
 
 import java.util.Random;
 
@@ -29,7 +26,7 @@ public class RunShow {
         new Thread(king).start();
 
         int maxDistance = 100;
-        // create commoners to work for valuables
+        // create commoners to work for kingdom.valuables
         for (int i = 0; i < 20; i++) {
             //maxDistance = i;
             Person p = new Person(CommonerType.values()[new Random().nextInt(9)], maxDistance);
