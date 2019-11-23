@@ -38,10 +38,6 @@ public class Property {
         } else {
             valueFactor *= 0.5;
         }
-
-        if (valueFactor < 1) {
-            valueFactor = 1.1;
-        }
     }
 
     public String getShape() {
