@@ -1,6 +1,5 @@
-package valuables;
+package kingdom.valuables;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class ValuableMaterials {

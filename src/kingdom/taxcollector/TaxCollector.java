@@ -1,8 +1,8 @@
 package kingdom.taxcollector;
 
 import kingdom.commoners.Person;
-import treasueroom.TreasureRoom;
-import valuables.Valuable;
+import kingdom.treasueroom.TreasureRoom;
+import kingdom.valuables.Valuable;
 
 import java.util.*;
 
@@ -37,7 +37,7 @@ public class TaxCollector implements Runnable {
                         e.printStackTrace();
                     }
                 } else if (calculateCarriedValuableSum() >= valuableTargetSum) {
-                    System.out.println("The tax collector has collected all the necessary tax for the kings party. Heading home with the valuables...");
+                    System.out.println("The tax collector has collected all the necessary tax for the kings party. Heading home with the kingdom.valuables...");
                     Thread.sleep(2000);
                     deliverValuablesToTheKing();
 
@@ -55,16 +55,16 @@ public class TaxCollector implements Runnable {
             int horseSpeed = 8;
             // take a random citizen of the kingdom and collect tax
             Person p = commoners.get(new Random().nextInt(commoners.size()));
-            // if that citizen has no valuables. Skip
+            // if that citizen has no kingdom.valuables. Skip
             if (p.getValuableTotalSum() == 0) return;
 
             System.out.println("The tax collector rides to the next person on his list.");
-            // lets ride to get their valuables (horse has avg of 14km/h speed (max 88km/h if needed))
+            // lets ride to get their kingdom.valuables (horse has avg of 14km/h speed (max 88km/h if needed))
             Thread.sleep((p.getDistanceFromCastle() / horseSpeed) * 1000);
 
             // take their stuff
             carriedValuables.addAll(p.takeValuables());
-            System.out.println("tax collector got some of valuables and is now carrying " + calculateCarriedValuableSum() + " worth of goods.");
+            System.out.println("tax collector got some of kingdom.valuables and is now carrying " + calculateCarriedValuableSum() + " worth of goods.");
 
     }
 

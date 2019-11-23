@@ -1,13 +1,10 @@
 package kingdom.commoners;
 
-import valuables.Materials;
-import valuables.Valuable;
-import valuables.ValuableFactory;
-import valuables.ValuableMaterials;
+import kingdom.valuables.Valuable;
+import kingdom.valuables.ValuableFactory;
+import kingdom.valuables.ValuableMaterials;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Random;
 
 public class Person implements Runnable {
@@ -48,7 +45,7 @@ public class Person implements Runnable {
             Thread.sleep(5000);
             // work cycle
             while (true) {
-                // Person goes working for 12 - 24 hours to find valuables in his area. (1 hour is 1000 ms)
+                // Person goes working for 12 - 24 hours to find kingdom.valuables in his area. (1 hour is 1000 ms)
                 Thread.sleep((new Random().nextInt(12)+12)*1000);
                 // Did the work day result in a random valuable?
                 int determinate = new Random().nextInt(10);
@@ -62,7 +59,7 @@ public class Person implements Runnable {
                         // add euphoric response
                         if (valuable.getMaterial().ordinal() >= socialStatus.ordinal()) {
                             System.out.println(socialStatus + " is euphoric about the new acquired " + valuable.getType() +
-                                    " he now has a total of " + getValuableTotalSum() + " worth of valuables.");
+                                    " he now has a total of " + getValuableTotalSum() + " worth of kingdom.valuables.");
                         }
                         // unhappy response
                         if (valuable.getMaterial().ordinal() <= socialStatus.ordinal() - 2) {
@@ -78,7 +75,7 @@ public class Person implements Runnable {
     }
 
     public ArrayList<Valuable> takeValuables() {
-        System.out.println(socialStatus + " got " + ownedValuables.size() + " valuables which is being taken by the tax collector");
+        System.out.println(socialStatus + " got " + ownedValuables.size() + " kingdom.valuables which is being taken by the tax collector");
 
         ArrayList<Valuable> tempValuables = new ArrayList<>(ownedValuables); // Creates a shallow copy
         ownedValuables.clear();

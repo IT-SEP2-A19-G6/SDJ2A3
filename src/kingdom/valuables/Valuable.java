@@ -1,4 +1,4 @@
-package valuables;
+package kingdom.valuables;
 
 public interface Valuable {
     String getName();

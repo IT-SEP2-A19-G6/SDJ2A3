@@ -1,4 +1,4 @@
-package valuables;
+package kingdom.valuables;
 
 import java.util.Random;
 

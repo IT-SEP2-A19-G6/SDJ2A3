@@ -1,4 +1,4 @@
-package treasueroom;
+package kingdom.treasueroom;
 
 public interface AccessRight {
     void acquireRead(String name);
