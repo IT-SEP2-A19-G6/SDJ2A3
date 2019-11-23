@@ -1,5 +1,6 @@
 package valuables.stones;
 
+import valuables.Materials;
 import valuables.Property;
 import valuables.Valuable;
 import valuables.ValuableMaterials;
@@ -7,7 +8,7 @@ import valuables.ValuableMaterials;
 import java.util.Random;
 
 public class Ruby implements Valuable {
-    private ValuableMaterials.Materials name;
+    private Materials name;
     private String[] cuts = {"uncut", "cut"};
     private String cut;
     private int value;
@@ -15,7 +16,7 @@ public class Ruby implements Valuable {
 
 
     public Ruby(){
-        this.name = ValuableMaterials.Materials.RUBY;
+        this.name = Materials.RUBY;
         this.value = 8;
         Random r = new Random();
         this.cut = cuts[r.nextInt(2)];
@@ -50,5 +51,10 @@ public class Ruby implements Valuable {
     @Override
     public String getType() {
         return property.getSize() + " " + property.getSurface() + " " + cut + " " + getName() + " " + property.getShape() + " with a value of " + value;
+    }
+
+    @Override
+    public Materials getMaterial() {
+        return name;
     }
 }

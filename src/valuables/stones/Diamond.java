@@ -1,5 +1,6 @@
 package valuables.stones;
 
+import valuables.Materials;
 import valuables.Property;
 import valuables.Valuable;
 import valuables.ValuableMaterials;
@@ -7,7 +8,7 @@ import valuables.ValuableMaterials;
 import java.util.Random;
 
 public class Diamond implements Valuable {
-    private ValuableMaterials.Materials name;
+    private Materials name;
     private boolean isBloodDiamond;
     private String[] cuts = {"uncut", "cut"};
     private String cut;
@@ -18,7 +19,7 @@ public class Diamond implements Valuable {
 
 
     public Diamond(){
-        this.name = ValuableMaterials.Materials.DIAMOND;
+        this.name = Materials.DIAMOND;
         this.value = 10;
         Random r = new Random();
         this.colour = colours[r.nextInt(4)];
@@ -72,5 +73,10 @@ public class Diamond implements Valuable {
         } else {
             return property.getSize() + " " + property.getSurface() + " and " + cut + " " + getName() + " " + property.getShape() + " with a value of " + value;
         }
+    }
+
+    @Override
+    public Materials getMaterial() {
+        return name;
     }
 }
