@@ -81,3 +81,5 @@ modules.xml
 *.ipr
 
 # End of https://www.gitignore.io/api/intellij+iml
+.idea/$PRODUCT_WORKSPACE_FILE$
+.idea/vcs.xml
