@@ -49,7 +49,7 @@ public class Person implements Runnable {
                 // Did the work day result in a random valuable?
                 int determinate = new Random().nextInt(10);
                 if (socialStatus.ordinal() <= determinate) {
-                    Valuable valuable = ValuableFactory.getValuable(ValuableFactory.getRandomMaterial());
+                    Valuable valuable = ValuableFactory.getRandomValuable();
                     // is this type of social status allowed to have that valuable?
                     // if the material is greater than his social status, he should not be allowed to generate it.
                     if (valuable.getMaterial().ordinal() <= socialStatus.ordinal() + 2) {
