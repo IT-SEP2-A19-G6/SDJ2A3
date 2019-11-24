@@ -1,12 +1,16 @@
 package kingdom.commoners;
 
+import kingdom.catalog.Catalog;
 import kingdom.valuables.Valuable;
 import kingdom.valuables.ValuableFactory;
 import kingdom.valuables.ValuableMaterials;
 
 import java.util.ArrayList;
 import java.util.Random;
+/*
+    Person class added for extra fun
 
+ */
 public class Person implements Runnable {
 
     private CommonerType socialStatus;
@@ -18,7 +22,7 @@ public class Person implements Runnable {
         ownedValuables = new ArrayList<>();
         distanceFromCastle = new Random().nextInt(maxDistance);
 
-        System.out.println(
+        Catalog.getInstance().write(this,
                 "A person from the social class " + socialStatus +
                         " has settled down at " + distanceFromCastle +
                         "km from the castle where the king resides.");
@@ -57,14 +61,14 @@ public class Person implements Runnable {
                     if (valuable.getMaterial().ordinal() <= socialStatus.ordinal() + 2) {
                         ownedValuables.add(valuable);
                         // add euphoric response
+                        Catalog c = Catalog.getInstance();
                         if (valuable.getMaterial().ordinal() >= socialStatus.ordinal()) {
-                            System.out.println(socialStatus + " is euphoric about the new acquired " + valuable.getType() +
-                                    " he now has a total of " + getValuableTotalSum() + " worth of kingdom.valuables.");
+                            c.write(this, "A " + socialStatus + " " + peopleResponses(true) + " " + valuable.getType() +
+                                    " with the value of " + valuable.getValue() + ". He now has a total of " + getValuableTotalSum() + " worth of valuables.");
                         }
                         // unhappy response
                         if (valuable.getMaterial().ordinal() <= socialStatus.ordinal() - 2) {
-                            System.out.println(socialStatus + " is NOT HAPPY about the new acquired " + valuable.getType() +
-                                    ". It's way beneath a " + socialStatus + "!!!");
+                            c.write(this, "A " + socialStatus + " " + peopleResponses(false) + " " + valuable.getType() + " with the value of " + valuable.getValue() );
                         }
                     }
                 }
@@ -75,11 +79,46 @@ public class Person implements Runnable {
     }
 
     public ArrayList<Valuable> takeValuables() {
-        System.out.println(socialStatus + " got " + ownedValuables.size() + " kingdom.valuables which is being taken by the tax collector");
+        Catalog c = Catalog.getInstance();
+        c.write(this, socialStatus + " got " + ownedValuables.size() + " owned valuables which is being taken by the tax collector");
 
         ArrayList<Valuable> tempValuables = new ArrayList<>(ownedValuables); // Creates a shallow copy
         ownedValuables.clear();
 
         return tempValuables;
+    }
+
+    private String peopleResponses(boolean happy) {
+        ArrayList<String> response = new ArrayList<>();
+
+        if (happy) {
+            response.add("is walking around near his place. He sees something and decides to check it out. It turns out it was his lucky day because he found");
+            response.add("is euphoric about the new acquired");
+            response.add("is very excited about his new");
+            response.add("were out drinking with his farmer buddies when he found a");
+            response.add("has worked really hard and has received");
+            response.add("has been lucky lately. Especially after he found a");
+            response.add("thinks the day could not get any better, yet he just got a");
+            response.add("was peeing outside his house when lightning stroke the ground near him. Totally shocked about the events he checks the ground near impact and finds a");
+            response.add("has birthday today and received a gift from the kingdom in form of");
+            response.add("has been beaten up by his wife. He walks slowly around his land, banished from his house, when he stumbles upon");
+            response.add("was betting on a knight fight and received");
+            response.add("saw to thieves running from guards with their stolen goods. He decides to stop them and receives");
+        } else {
+            response.add("slips in the rain, break his arms and legs on");
+            response.add("went into a fight with his spouse when she throw a");
+            response.add("house is on fire. Everything turns to ashes, whats left is only a");
+            response.add("is furious about the new acquired");
+            response.add("just sold his house, and all he got was ");
+            response.add("has been working really hard but only got fucking");
+            response.add("can't believe he just got a");
+            response.add("went into a bar fight and got hit in the head with a");
+            response.add("went out trading. Somehow he lost his two diamonds and ended out with");
+            response.add("just sold his house, and all he got was");
+            response.add("robbed a local merc but all he got was");
+        }
+
+        return response.get(new Random().nextInt(response.size()));
+
     }
 }
