@@ -11,7 +11,7 @@ import java.util.Random;
 public class ValuableFactory {
     public static HashMap<Materials, Valuable> valuables = new java.util.HashMap<>();
 
-    public static Valuable getValuable(Materials valuableType){
+    private static Valuable getValuable(Materials valuableType){
         Valuable valuable = valuables.get(valuableType);
         if (valuable == null) {
             switch (valuableType) {
@@ -53,10 +53,48 @@ public class ValuableFactory {
         return valuable;
     }
 
-    public static Materials getRandomMaterial(){
+    public static Valuable getRandomValuable(){
         Random r = new Random();
-        Materials[] valuableTypes = {Materials.BRASS, Materials.BRONZE, Materials.COPPER, Materials.GOLD, Materials.SILVER, Materials.DIAMOND, Materials.EMERALD, Materials.RUBY};
-        return valuableTypes[r.nextInt(8)];
+        Materials[] valuableTypes = {Materials.BRASS, Materials.COPPER, Materials.BRONZE, Materials.SILVER, Materials.GOLD, Materials.EMERALD, Materials.RUBY, Materials.DIAMOND};
+        Materials valuableOfType = valuableTypes[r.nextInt(8)];
+        return getValuable(valuableOfType);
     }
+
+
+    public static Valuable getRandomBrassValuable(){
+        return getValuable(Materials.BRASS);
+    }
+
+    public static Valuable getRandomCopperValuable(){
+        return getValuable(Materials.COPPER);
+    }
+
+    public static Valuable getRandomBronzeValuable(){
+        return getValuable(Materials.BRONZE);
+    }
+
+    public static Valuable getRandomSilverValuable(){
+        return getValuable(Materials.SILVER);
+    }
+
+    public static Valuable getRandomGoldValuable(){
+        return getValuable(Materials.GOLD);
+    }
+
+    public static Valuable getRandomEmeraldValuable(){
+        return getValuable(Materials.EMERALD);
+    }
+
+    public static Valuable getRandomRubyValuable(){
+        return getValuable(Materials.RUBY);
+    }
+
+    public static Valuable getRandomDiamondValuable(){
+        return getValuable(Materials.DIAMOND);
+    }
+
+
+
+
 
 }

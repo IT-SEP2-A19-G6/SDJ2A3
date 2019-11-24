@@ -50,7 +50,7 @@ public class King implements Runnable {
                     System.out.println("The king has the best party in the entire kingdom!!!!!!");
                 } else  {
                     // party canceled
-                    System.out.println("The king did NOT have enough kingdom.valuables(" + treasureRoom.getValuableCount() + " items with the total worth of " + valuableSum + ") in the treasure room to hold the party worth " + partyBudget + ". The king is sad.");
+                    System.out.println("The king did NOT have enough valuables(" + treasureRoom.getValuableCount() + " items with the total worth of " + valuableSum + ") in the treasure room to hold the party worth " + partyBudget + ". The king is sad.");
                     if (valuables.size() > 0) {
                         // putting the stuff back.
                         System.out.println("The king is putting all the items back in the treasure room because its not party time anyway.");
