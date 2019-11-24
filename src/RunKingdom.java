@@ -7,29 +7,22 @@ import kingdom.treasueroom.TreasureRoom;
 import java.util.Random;
 
 
-public class RunShow {
+public class RunKingdom {
     public static void main(String[] args) {
-
-
-
         // create the kingdom
         TreasureRoom treasureRoom = new TreasureRoom();
-
-
-
         // Create the tax collector and start collecting
         TaxCollector taxCollector = new TaxCollector(treasureRoom, 100);
         new Thread(taxCollector).start();
-
-        // Create the king
+        // Place a king on the throne
         King king = new King(treasureRoom, taxCollector);
         new Thread(king).start();
-
-        int maxDistance = 100;
+        // set kingdom size in km
+        int kingdomSize = 100;
         // create commoners to work for kingdom.valuables
         for (int i = 0; i < 20; i++) {
             //maxDistance = i;
-            Person p = new Person(CommonerType.values()[new Random().nextInt(9)], maxDistance);
+            Person p = new Person(CommonerType.values()[new Random().nextInt(9)], kingdomSize);
             taxCollector.addCommoner(p);
             new Thread(p).start();
         }
