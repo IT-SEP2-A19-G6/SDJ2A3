@@ -28,7 +28,7 @@ public class TreasureRoom  implements AccessRight{
     public synchronized void acquireRead(String name) {
         queue.add(reader);
         System.out.println(name + " wants to look at the treasures");
-        if (queue.element().equals(writer) || isWriting){
+        while (queue.element().equals(writer) || isWriting){
             try {
                 System.out.println(name + " is waiting to enter the room...");
                 wait();
@@ -56,7 +56,7 @@ public class TreasureRoom  implements AccessRight{
     public synchronized void acquireWrite(String name) {
         queue.add(writer);
         System.out.println("The " + name + " wants change the contents af the treasure room!");
-        if (activeReaders > 0 || queue.element().equals(reader) || isWriting){
+        while (activeReaders > 0 || queue.element().equals(reader) || isWriting){
             try {
                 System.out.println(name + " is waiting for the doors to be opened to the treasure room");
                 wait();
@@ -131,6 +131,15 @@ public class TreasureRoom  implements AccessRight{
         }
         System.out.println(name + " has calculated the inventory of " + valuables.size() + " items to a total value of " + roomValue);
         return roomValue;
+    }
+
+    //For testing purposes
+    public int getActiveReaders(){
+        return activeReaders;
+    }
+
+    public  boolean getIsWriting(){
+        return isWriting;
     }
 
 }
