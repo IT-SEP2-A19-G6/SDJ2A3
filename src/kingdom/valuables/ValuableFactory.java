@@ -6,6 +6,7 @@ import kingdom.valuables.stones.Emerald;
 import kingdom.valuables.stones.Ruby;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class ValuableFactory {
     public static HashMap<Materials, Valuable> valuables = new java.util.HashMap<>();
@@ -50,6 +51,12 @@ public class ValuableFactory {
             valuables.put(valuableType, valuable);
         }
         return valuable;
+    }
+
+    public static Materials getRandomMaterial(){
+        Random r = new Random();
+        Materials[] valuableTypes = {Materials.BRASS, Materials.BRONZE, Materials.COPPER, Materials.GOLD, Materials.SILVER, Materials.DIAMOND, Materials.EMERALD, Materials.RUBY};
+        return valuableTypes[r.nextInt(8)];
     }
 
 }
