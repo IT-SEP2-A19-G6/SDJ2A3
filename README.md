@@ -1,13 +1,13 @@
 # SDJ2A3
-##Assignment 3
+## Assignment 3
 
 
 ![Assignment diagram](Assignment_diagram.png)
 
 
-###### Assignment 3, SDJ2-S19
+## Assignment 3, SDJ2-S19
 (Readers & Writers, Flyweight, Singleton)
-###### The assignment: 
+## The assignment: 
 You are going to implement a thread example based on the readers-writers problem.
 The below image is a sketch class diagram:
  
@@ -16,7 +16,7 @@ This program will simulate a kingdom, where tax collectors collect valuables fro
 
 
 You will need at least the following classes:
-###### 1 - ValuableFactory
+## 1 - ValuableFactory
 The ValuableFactory. This is the factory class in the flyweight pattern. The flyweight objects in this assignment are of the type Valuable. 
 This Valuable is either an interface or an abstract class, that is up to you. 
 An example of a Valuable sub-class could be:
@@ -25,7 +25,7 @@ An example of a Valuable sub-class could be:
 
 The ValuableFactory is responsible for creating and caching Valuable objects, as specified by the flyweight pattern. Create a couple of different types, e.g.: Diamond, GoldCoin, Jewel, Ruby, WoodenCoin, Cow etc…
 
-###### 2 - TreasureRoom
+## 2 - TreasureRoom
 The TreasureRoom contains a list of Valuables. It must control access to this list using a Readers/Writers-problem approach. Which approach is up to you. Pick one from class, or come up with your own.
 
 It must at least have methods to 
@@ -33,7 +33,7 @@ It must at least have methods to
 2.	get a Valuable from the list 
 3.	remove a Valuable from the list.
 
-###### 3 - Accountant
+## 3 - Accountant
 The Accountant is a “reader” class. It implements Runnable, so it can be run in a separate thread. The accountant will have a while(true) loop in the run method. 
 1.	He will acquire read access
 2.	Count the total sum of the Valuables worth in the list (it may include a sleep to simulate it takes time to count the Valuables)
@@ -41,7 +41,7 @@ The Accountant is a “reader” class. It implements Runnable, so it can be run
 4.	Release read access
 5.	Sleep for a little while
 
-###### 4 - TaxCollector
+## 4 - TaxCollector
 The TaxCollector is meant to ride around the country, and collect taxes for the king, in terms of Valuables. He will be given a valuable target, and must collect Valuables until their total worth meets this target.
 This class is also Runnable, to be run in a thread.
 The TaxCollector will do the following:
@@ -53,7 +53,7 @@ The TaxCollector will do the following:
 6.	Sleep for a little while
 7.	Start over from step 1
 
-###### 5 - King
+## 5 - King
 The king will occasionally hold a party, and to pay for this, he will retrieve valuables from the TreasureRoom.
 1.	Similar to the TaxCollector, the King will generate a random number, e.g. 50-150, to pay for the next party.
 2.	He will acquire write access
@@ -63,7 +63,7 @@ The king will occasionally hold a party, and to pay for this, he will retrieve v
 6.	Sleep for a while
 7.	Start over
 
-###### 6 - Catalog
+## 6 - Catalog
 The last class is logging functionality, to keep track of the income and outcome of the kingdom. Use the Singleton pattern here. 
 Use this logger-class to log out to the console, what happens in your program. E.g. when and how much a TaxCollector adds to the TreasureRoom, when the King holds a party or cancels it, when the Accountants has calculated the wealth in the TreasureRoom. You may also include logs when one of them are waiting to enter the TreasureRoom.
 
