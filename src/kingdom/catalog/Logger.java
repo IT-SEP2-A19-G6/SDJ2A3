@@ -44,7 +44,7 @@ in the TreasureRoom. You may also include logs when one of them are waiting to e
         Catalog c = Catalog.getInstance();
         c.write( valuables.size() + " owned valuables which is being taken by the tax collector");
         valuables.clear();
-        
+
         return valuables;
     }
 
