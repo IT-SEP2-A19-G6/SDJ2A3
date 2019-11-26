@@ -124,11 +124,6 @@ public class TreasureRoom  implements AccessRight{
     }
 
     public int getValueOfTreasureRoom(String name){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         System.out.println(name + " has calculated the inventory of " + valuables.size() + " items to a total value of " + roomValue);
         return roomValue;
     }

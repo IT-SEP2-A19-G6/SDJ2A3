@@ -1,3 +1,4 @@
+import kingdom.accountant.Accountant;
 import kingdom.commoners.CommonerType;
 import kingdom.commoners.Person;
 import kingdom.king.King;
@@ -28,6 +29,10 @@ public class RunKingdom {
         }
 
 
+        for (int i = 0; i < 5; i++) {
+            Accountant accountant = new Accountant(treasureRoom);
+            new Thread(accountant).start();
+        }
 
 
 //        TreasureRoom treasureRoom = new TreasureRoom();
