@@ -25,7 +25,7 @@ public class Accountant implements Runnable {
             sleep(5000, 18000);
 
             int totalSum = treasureRoom.getValueOfTreasureRoom(this);
-            catalog.write(this, "The total sum of valuables: " + totalSum);
+            catalog.write(this, "has counted the total sum of valuables, which is: " + totalSum);
             displayChestTotalValue();
 
             // Release read access
@@ -44,7 +44,7 @@ public class Accountant implements Runnable {
     }
 
     private void displayChestTotalValue() {
-        String message = "" +
+        String message = "\n" +
                 "         __________\n" +
                 "        /\\____;;___\\\n" +
                 "       | /         /\n" +
@@ -55,7 +55,7 @@ public class Accountant implements Runnable {
                 "      %  \\|%________|\n" +
                 "       %%%%\n";
 
-        System.out.println(message);
+        Catalog.getInstance().write(this, message);
 
     }
 }

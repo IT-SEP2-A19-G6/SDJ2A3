@@ -91,7 +91,9 @@ public class TaxCollector implements Runnable {
     }
 
 
-    public void addCommoner(Person p) {
-        commoners.add(p);
+    public void addCommoner(ArrayList<Person> people) {
+        for (Person person : people) {
+            commoners.add(person);
+        }
     }
 }
