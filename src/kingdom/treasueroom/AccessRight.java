@@ -1,8 +1,8 @@
 package kingdom.treasueroom;
 
 public interface AccessRight {
-    void acquireRead(String name);
-    void releaseRead(String name);
-    void acquireWrite(String name);
-    void releaseWrite(String name);
+    void acquireRead(Object name);
+    void releaseRead(Object name);
+    void acquireWrite(Object name);
+    void releaseWrite(Object name);
 }

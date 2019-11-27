@@ -35,9 +35,9 @@ public class Accountant implements Runnable {
         }
     }
 
-    private void sleep(int minsleep, int maxSleep) {
+    private void sleep(int minSleep, int maxSleep) {
         try {
-            Thread.sleep(new Random().nextInt(maxSleep) + minsleep);
+            Thread.sleep(new Random().nextInt(maxSleep) + minSleep);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
