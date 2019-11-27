@@ -1,5 +1,6 @@
 package kingdom.treasueroom;
 
+import kingdom.catalog.Catalog;
 import kingdom.valuables.Valuable;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -25,12 +26,13 @@ public class TreasureRoom  implements AccessRight{
 
 
     @Override
-    public synchronized void acquireRead(String name) {
+    public synchronized void acquireRead(Object name) {
+        Catalog c = Catalog.getInstance();
         queue.add(reader);
-        System.out.println(name + " wants to look at the treasures");
+        c.write(this, name.getClass().getSimpleName() + " wants to look at the treasures");
         while (queue.element().equals(writer) || isWriting){
             try {
-                System.out.println(name + " is waiting to enter the room...");
+                c.write(this, name.getClass().getSimpleName() + " is waiting to enter the room...");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -38,27 +40,29 @@ public class TreasureRoom  implements AccessRight{
         }
         activeReaders++;
         queue.poll();
-        System.out.println(name + " is given access to the room!");
+        c.write(this, name.getClass().getSimpleName() + " is given access to the room!");
     }
 
     @Override
-    public synchronized void releaseRead(String name) {
-        System.out.println(name + " has left the treasures");
+    public synchronized void releaseRead(Object name) {
+        Catalog c = Catalog.getInstance();
+        c.write(this, name.getClass().getSimpleName() + " has left the treasures");
         activeReaders--;
         if (activeReaders == 0){
-            System.out.println(name + " releases the room to updates");
+            c.write(this, name.getClass().getSimpleName() + " releases the room to updates");
             notifyAll();
         }
     }
 
-    // TODO: JH - replace String name with: Class c, and use c.getName() method to get the name instead of writing each.
+
     @Override
-    public synchronized void acquireWrite(String name) {
+    public synchronized void acquireWrite(Object name) {
+        Catalog c = Catalog.getInstance();
         queue.add(writer);
-        System.out.println("The " + name + " wants change the contents af the treasure room!");
+        c.write(this, "The " + name.getClass().getSimpleName() + " wants to enter the treasure room!");
         while (activeReaders > 0 || queue.element().equals(reader) || isWriting){
             try {
-                System.out.println(name + " is waiting for the doors to be opened to the treasure room");
+                c.write(this, name.getClass().getSimpleName() + " is waiting to enter the treasure room");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -66,29 +70,33 @@ public class TreasureRoom  implements AccessRight{
         }
         isWriting = true;
         queue.poll();
-        System.out.println(name + " is handling his business in the treasure room");
+        c.write(this, name.getClass().getSimpleName() + " is now allowed to enter the treasure room.");
     }
 
     @Override
-    public synchronized void releaseWrite(String name) {
-        System.out.println(name + " has updated the inventory of the treasure room");
+    public synchronized void releaseWrite(Object name) {
+        Catalog c = Catalog.getInstance();
+        c.write(this, name.getClass().getSimpleName() + " is leaving the treasure room.");
+        c.write(this, "--------------------------------------------");
+        c.write(this, "The treasure room now contains " + valuables.size() + " items worth " + roomValue);
+        c.write(this, "--------------------------------------------");
         isWriting = false;
         notifyAll();
     }
 
-    public void addValuable(String name, Valuable valuable){
+    public void addValuable(Object name, Valuable valuable){
         roomValue += valuable.getValue();
         valuables.add(valuable);
-        System.out.println(name + " added " + valuable.getType() + " to the treasure room. Total is now: " + roomValue);
+        Catalog.getInstance().write(this, name.getClass().getSimpleName() + " added " + valuable.getType() + " to the treasure room. Total is now: " + roomValue);
     }
 
-    public Valuable getValuable(String name, Valuable valuable){
+    public Valuable getValuable(Object name, Valuable valuable){
         Valuable valuableToReturn = null;
         if (valuables.size() > 0) {
             for (Valuable valuableInList : valuables){
                 if (valuableInList.equals(valuable)){
                     valuableToReturn = valuableInList;
-                    System.out.println(name + " found " + valuable.getType());
+                    Catalog.getInstance().write(this, name.getClass().getSimpleName() + " found " + valuable.getType());
                     break;
                 }
             }
@@ -96,7 +104,7 @@ public class TreasureRoom  implements AccessRight{
         return valuableToReturn;
     }
 
-    public Valuable getRandomValueable(String name) {
+    public Valuable getRandomValueable(Object name) {
         if (valuables.size() > 0) {
             return removeValuable(name, valuables.get(new Random().nextInt(valuables.size())));
         }
@@ -107,13 +115,13 @@ public class TreasureRoom  implements AccessRight{
         return valuables.size();
     }
 
-    public Valuable removeValuable(String name, Valuable valuable){
+    public Valuable removeValuable(Object name, Valuable valuable){
         Valuable valuableToReturn = null;
         if (valuables.size() > 0){
             for (Valuable valuableInList : valuables){
                 if (valuableInList.equals(valuable)){
                     valuableToReturn = valuableInList;
-                    System.out.println(name + " removed " + valuable.getType() + " from the treasure room");
+                    Catalog.getInstance().write(this, name.getClass().getSimpleName() + " removed " + valuable.getType() + " from the treasure room");
                     break;
                 }
             }
@@ -123,13 +131,15 @@ public class TreasureRoom  implements AccessRight{
         return valuableToReturn;
     }
 
-    public int getValueOfTreasureRoom(String name){
+    public int getValueOfTreasureRoom(Object name){
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(name + " has calculated the inventory of " + valuables.size() + " items to a total value of " + roomValue);
+        Catalog c = Catalog.getInstance();
+        c.write(this, name.getClass().getSimpleName() + " has calculated the inventory of " + valuables.size() + " items to a total value of " + roomValue);
+
         return roomValue;
     }
 

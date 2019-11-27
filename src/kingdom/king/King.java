@@ -1,5 +1,6 @@
 package kingdom.king;
 
+import kingdom.catalog.Catalog;
 import kingdom.taxcollector.TaxCollector;
 import kingdom.treasueroom.TreasureRoom;
 import kingdom.valuables.Valuable;
@@ -19,23 +20,24 @@ public class King implements Runnable {
 
     @Override
     public void run() {
+
         while(true) {
 
             try {
-
+                Catalog c = Catalog.getInstance();
                 Thread.sleep(new Random().nextInt(10000) + 2000 ); // min 2 sec max 12 sec
 
                 ArrayList<Valuable> valuables = new ArrayList<>();
                 int valuableSum = 0;
                 int partyBudget = new Random().nextInt(100) + 100;
-                System.out.println("the kings new party budget is whole " + partyBudget);
+                c.write(this, "the kings new party budget is whole " + partyBudget);
 
 
 
-                treasureRoom.acquireWrite(getClass().getSimpleName());
+                treasureRoom.acquireWrite(this);
 
                 for (int i = 0; i < treasureRoom.getValuableCount(); i++) {
-                    Valuable valuable = treasureRoom.getRandomValueable(getClass().getSimpleName());
+                    Valuable valuable = treasureRoom.getRandomValueable(this);
                     Thread.sleep(500);
                     valuables.add(valuable);
                     valuableSum += valuable.getValue();
@@ -45,25 +47,26 @@ public class King implements Runnable {
                 }
 
                 if (valuableSum >= partyBudget) {
-                    System.out.println("The king collected enough kingdom.valuables to hold a party.");
+                    c.write(this, "The king collected enough kingdom.valuables to hold a party.");
                     displayParty();
-                    System.out.println("The king has the best party in the entire kingdom!!!!!!");
+                    c.write(this, "The king has the best party in the entire kingdom!!!!!!");
                 } else  {
                     // party canceled
-                    System.out.println("The king did NOT have enough valuables(" + treasureRoom.getValuableCount() + " items with the total worth of " + valuableSum + ") in the treasure room to hold the party worth " + partyBudget + ". The king is sad.");
+                    c.write(this, "The king did NOT have enough kingdom.valuables(" + treasureRoom.getValuableCount() + " items with the total worth of " + valuableSum + ") in the treasure room to hold the party worth " + partyBudget + ". The king is sad.");
+
                     if (valuables.size() > 0) {
                         // putting the stuff back.
-                        System.out.println("The king is putting all the items back in the treasure room because its not party time anyway.");
+                        c.write(this, "The king is putting all the items back in the treasure room because its not party time anyway.");
                         for (Valuable v : valuables) {
-                            treasureRoom.addValuable(getClass().getSimpleName(), v);
+                            treasureRoom.addValuable(this, v);
                             Thread.sleep(100);
                         }
                     }
                 }
 
-                treasureRoom.releaseWrite(getClass().getSimpleName());
+                treasureRoom.releaseWrite(this);
 
-                System.out.println("Maybe the king can hold a party tomorrow. The king goes to sleep.... ZzzZzzZZzzZZ...");
+                c.write(this, "Maybe the king can hold a party tomorrow. The king goes to sleep.... ZzzZzzZZzzZZ...");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -71,9 +74,10 @@ public class King implements Runnable {
     }
 
     private void displayParty() {
-        System.out.println("---------------------------------------------------------");
-        System.out.println("------------------ THE KING PARTY HARD ------------------");
-        System.out.println("---------------------------------------------------------");
+        Catalog c = Catalog.getInstance();
+        c.write(this, "---------------------------------------------------------");
+        c.write(this, "------------------ THE KING PARTY HARD ------------------");
+        c.write(this, "---------------------------------------------------------");
         String msg = "" +
                 "                                                   (\"\\\n" +
                 "           /)                                       ) \\\n" +
@@ -102,9 +106,8 @@ public class King implements Runnable {
                 "        _,T-)  /    / ^!           !^ \\\n" +
                 "       (__,-%_/";
 
-        System.out.println(msg);
-        System.out.println("---------------------------------------------------------");
-        System.out.println("-------------- Scroll up to see his party ---------------");
-        System.out.println("---------------------------------------------------------");
+        c.write(this, msg);
+        c.write(this, "---------------------------------------------------------");
+        c.write(this, "---------------------------------------------------------");
     }
 }

@@ -1,3 +1,4 @@
+import kingdom.catalog.Catalog;
 import kingdom.commoners.CommonerType;
 import kingdom.commoners.Person;
 import kingdom.king.King;
@@ -11,6 +12,8 @@ public class RunKingdom {
     public static void main(String[] args) {
         // create the kingdom
         TreasureRoom treasureRoom = new TreasureRoom();
+        // Decide what should be known about the kingdom
+        Catalog.getInstance().setCatalogLevel(Catalog.CatalogLevel.PERSON, true);
         // Create the tax collector and start collecting
         TaxCollector taxCollector = new TaxCollector(treasureRoom, 100);
         new Thread(taxCollector).start();
@@ -21,11 +24,12 @@ public class RunKingdom {
         int kingdomSize = 100;
         // create commoners to work for kingdom.valuables
         for (int i = 0; i < 20; i++) {
-            //maxDistance = i;
             Person p = new Person(CommonerType.values()[new Random().nextInt(9)], kingdomSize);
             taxCollector.addCommoner(p);
             new Thread(p).start();
         }
+
+
 
 
 
