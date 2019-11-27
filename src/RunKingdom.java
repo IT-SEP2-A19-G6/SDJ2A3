@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+
 import kingdom.accountant.Accountant;
-=======
 import kingdom.catalog.Catalog;
->>>>>>> master
 import kingdom.commoners.CommonerType;
 import kingdom.commoners.Person;
 import kingdom.king.King;

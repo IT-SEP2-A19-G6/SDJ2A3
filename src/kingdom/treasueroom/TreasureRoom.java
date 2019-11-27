@@ -131,20 +131,10 @@ public class TreasureRoom  implements AccessRight{
         return valuableToReturn;
     }
 
-<<<<<<< HEAD
-    public int getValueOfTreasureRoom(String name){
-        System.out.println(name + " has calculated the inventory of " + valuables.size() + " items to a total value of " + roomValue);
-=======
     public int getValueOfTreasureRoom(Object name){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         Catalog c = Catalog.getInstance();
         c.write(this, name.getClass().getSimpleName() + " has calculated the inventory of " + valuables.size() + " items to a total value of " + roomValue);
 
->>>>>>> master
         return roomValue;
     }
 
