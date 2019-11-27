@@ -53,6 +53,7 @@ public class King implements Runnable {
                 } else  {
                     // party canceled
                     c.write(this, "The king did NOT have enough kingdom.valuables(" + treasureRoom.getValuableCount() + " items with the total worth of " + valuableSum + ") in the treasure room to hold the party worth " + partyBudget + ". The king is sad.");
+
                     if (valuables.size() > 0) {
                         // putting the stuff back.
                         c.write(this, "The king is putting all the items back in the treasure room because its not party time anyway.");

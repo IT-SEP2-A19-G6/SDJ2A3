@@ -3,7 +3,6 @@ package kingdom.commoners;
 import kingdom.catalog.Catalog;
 import kingdom.valuables.Valuable;
 import kingdom.valuables.ValuableFactory;
-import kingdom.valuables.ValuableMaterials;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -54,8 +53,7 @@ public class Person implements Runnable {
                 // Did the work day result in a random valuable?
                 int determinate = new Random().nextInt(10);
                 if (socialStatus.ordinal() <= determinate) {
-                    ValuableMaterials materials = new ValuableMaterials();
-                    Valuable valuable = ValuableFactory.getValuable(materials.getRandomValuable());
+                    Valuable valuable = ValuableFactory.getRandomValuable();
                     // is this type of social status allowed to have that valuable?
                     // if the material is greater than his social status, he should not be allowed to generate it.
                     if (valuable.getMaterial().ordinal() <= socialStatus.ordinal() + 2) {

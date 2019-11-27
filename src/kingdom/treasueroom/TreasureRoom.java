@@ -30,7 +30,7 @@ public class TreasureRoom  implements AccessRight{
         Catalog c = Catalog.getInstance();
         queue.add(reader);
         c.write(this, name.getClass().getSimpleName() + " wants to look at the treasures");
-        if (queue.element().equals(writer) || isWriting){
+        while (queue.element().equals(writer) || isWriting){
             try {
                 c.write(this, name.getClass().getSimpleName() + " is waiting to enter the room...");
                 wait();
@@ -60,7 +60,7 @@ public class TreasureRoom  implements AccessRight{
         Catalog c = Catalog.getInstance();
         queue.add(writer);
         c.write(this, "The " + name.getClass().getSimpleName() + " wants to enter the treasure room!");
-        if (activeReaders > 0 || queue.element().equals(reader) || isWriting){
+        while (activeReaders > 0 || queue.element().equals(reader) || isWriting){
             try {
                 c.write(this, name.getClass().getSimpleName() + " is waiting to enter the treasure room");
                 wait();
@@ -141,6 +141,15 @@ public class TreasureRoom  implements AccessRight{
         c.write(this, name.getClass().getSimpleName() + " has calculated the inventory of " + valuables.size() + " items to a total value of " + roomValue);
 
         return roomValue;
+    }
+
+    //For testing purposes
+    public int getActiveReaders(){
+        return activeReaders;
+    }
+
+    public  boolean getIsWriting(){
+        return isWriting;
     }
 
 }
