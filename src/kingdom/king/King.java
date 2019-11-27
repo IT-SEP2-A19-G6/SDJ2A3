@@ -11,11 +11,9 @@ import java.util.Random;
 public class King implements Runnable {
 
     private TreasureRoom treasureRoom;
-    private TaxCollector taxCollector;
 
-    public King(TreasureRoom treasureRoom, TaxCollector taxCollector) {
+    public King(TreasureRoom treasureRoom) {
         this.treasureRoom = treasureRoom;
-        this.taxCollector = taxCollector;
     }
 
     @Override
