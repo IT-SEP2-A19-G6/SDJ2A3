@@ -15,7 +15,6 @@ public class Brass implements Valuable {
     public Brass(){
         this.name = Materials.BRASS;
         this.value = 1;
-        Random r = new Random();
         this.property = new Property();
         calculateValue();
     }

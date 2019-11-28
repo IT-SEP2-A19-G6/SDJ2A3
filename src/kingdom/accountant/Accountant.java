@@ -18,11 +18,12 @@ public class Accountant implements Runnable {
         while(true) {
             Catalog catalog = Catalog.getInstance();
 
+            sleep(10000, 25000);
             // Acquire read access
             treasureRoom.acquireRead(this);
 
             // Simulate calculating takes time
-            sleep(5000, 18000);
+            sleep(2000, 4000);
 
             int totalSum = treasureRoom.getValueOfTreasureRoom(this);
             catalog.write(this, "has counted the total sum of valuables, which is: " + totalSum);
@@ -30,7 +31,6 @@ public class Accountant implements Runnable {
 
             // Release read access
             treasureRoom.releaseRead(this);
-            sleep(5000, 10000);
 
         }
     }

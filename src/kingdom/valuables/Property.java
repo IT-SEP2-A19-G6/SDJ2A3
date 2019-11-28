@@ -8,12 +8,12 @@ public class Property {
     private int size;
     private boolean isPolished;
     private double valueFactor;
-    private Random r = new Random();
 
     public Property(){
+        Random r = new Random();
         this.shape = shapes[r.nextInt(4)];
         isPolished = r.nextBoolean();
-        size = r.nextInt(9)+1;
+        size = r.nextInt(11)+1;
         valueFactor = 1;
         calculateFactor();
     }
@@ -27,7 +27,7 @@ public class Property {
             valueFactor *= 1.6;
         }
 
-        if (size >= 5){
+        if (size >= 5 && size <= 8){
             valueFactor += 0.2;
         } else if (size > 8){
             valueFactor *= size * 1.4;
@@ -48,9 +48,6 @@ public class Property {
         return shape;
     }
 
-    private boolean isPolished() {
-        return isPolished;
-    }
 
     public double getValueFactor() {
         return valueFactor;

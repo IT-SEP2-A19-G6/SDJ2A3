@@ -21,6 +21,7 @@ public class Diamond implements Valuable {
         this.name = Materials.DIAMOND;
         this.value = 10;
         Random r = new Random();
+        isBloodDiamond = r.nextBoolean();
         this.colour = colours[r.nextInt(4)];
         this.cut = cuts[r.nextInt(2)];
         this.property = new Property();
