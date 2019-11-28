@@ -15,7 +15,6 @@ public class Copper implements Valuable {
     public Copper(){
         this.name = Materials.COPPER;
         this.value = 2;
-        Random r = new Random();
         this.property = new Property();
         calculateValue();
     }

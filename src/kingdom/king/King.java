@@ -1,7 +1,6 @@
 package kingdom.king;
 
 import kingdom.catalog.Catalog;
-import kingdom.taxcollector.TaxCollector;
 import kingdom.treasueroom.TreasureRoom;
 import kingdom.valuables.Valuable;
 
@@ -35,7 +34,7 @@ public class King implements Runnable {
                 treasureRoom.acquireWrite(this);
 
                 for (int i = 0; i < treasureRoom.getValuableCount(); i++) {
-                    Valuable valuable = treasureRoom.getRandomValueable(this);
+                    Valuable valuable = treasureRoom.getRandomValuable(this);
                     Thread.sleep(500);
                     valuables.add(valuable);
                     valuableSum += valuable.getValue();

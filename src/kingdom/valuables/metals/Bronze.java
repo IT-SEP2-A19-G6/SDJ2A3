@@ -15,7 +15,6 @@ public class Bronze implements Valuable {
     public Bronze(){
         this.name = Materials.BRONZE;
         this.value = 3;
-        Random r = new Random();
         this.property = new Property();
         calculateValue();
     }

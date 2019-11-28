@@ -15,7 +15,6 @@ public class Silver implements Valuable {
     public Silver(){
         this.name = Materials.SILVER;
         this.value = 4;
-        Random r = new Random();
         this.property = new Property();
         calculateValue();
     }

@@ -104,7 +104,7 @@ public class TreasureRoom  implements AccessRight{
         return valuableToReturn;
     }
 
-    public Valuable getRandomValueable(Object name) {
+    public Valuable getRandomValuable(Object name) {
         if (valuables.size() > 0) {
             return removeValuable(name, valuables.get(new Random().nextInt(valuables.size())));
         }
@@ -125,7 +125,10 @@ public class TreasureRoom  implements AccessRight{
                     break;
                 }
             }
-            roomValue -= valuableToReturn.getValue();
+
+            if (valuableToReturn != null) {
+                roomValue -= valuableToReturn.getValue();
+            }
             valuables.remove(valuableToReturn);
         }
         return valuableToReturn;
